@@ -44,6 +44,7 @@ class SMSPoh
                 'json' => [
                     'sender' => $this->senderId,
                     'to' => $to,
+                    'from' => $this->senderId,
                     'message' => $message,
                 ],
             ]);
@@ -80,6 +81,7 @@ class SMSPoh
                 'json' => [
                     'sender' => $this->senderId,
                     'to' => $to,
+                    'from' => $this->senderId,
                     'message' => $message,
                 ],
             ]);

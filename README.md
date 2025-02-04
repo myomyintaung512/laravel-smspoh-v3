@@ -33,16 +33,16 @@ SMSPOH_BASE_URL=https://v3.smspoh.com/api/rest
 use myomyintaung512\LaravelSmspoh\Facades\SMSPoh;
 
 // Send SMS
-SMSPoh::send('1234567890', 'Your message here');
+app()->smspoh->send('1234567890', 'Your message here');
 
 // Check balance
-$balance = SMSPoh::balance();
+$balance = app()->smspoh->balance();
 
 // Send verification SMS
-SMSPoh::verify('1234567890', 'Your verification code is: 123456');
+app()->smspoh->verify('1234567890', 'Your verification code is: 123456');
 
 // Check message status
-SMSPoh::status('message_id');
+app()->smspoh->status('message_id');
 ```
 
 ### Using Laravel Notifications

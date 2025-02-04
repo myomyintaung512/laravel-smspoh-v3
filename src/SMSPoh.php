@@ -8,13 +8,15 @@ use myomyintaung512\LaravelSmspoh\Exceptions\SMSPohException;
 class SMSPoh
 {
     protected $apiKey;
+    protected $apiSecret;
     protected $senderId;
     protected $baseUrl;
     protected $client;
 
-    public function __construct($apiKey, $senderId, $baseUrl)
+    public function __construct($apiKey, $apiSecret, $senderId, $baseUrl)
     {
         $this->apiKey = $apiKey;
+        $this->apiSecret = $apiSecret;
         $this->senderId = $senderId;
         $this->baseUrl = $baseUrl;
         $this->client = new Client();
@@ -25,12 +27,18 @@ class SMSPoh
         $this->client = $client;
     }
 
+    private function getAuthToken()
+    {
+        $credentials = $this->apiKey . ':' . $this->apiSecret;
+        return base64_encode($credentials);
+    }
+
     public function send($to, $message)
     {
         try {
             $response = $this->client->post($this->baseUrl . '/send', [
                 'headers' => [
-                    'Authorization' => 'Bearer ' . $this->apiKey,
+                    'Authorization' => 'Bearer ' . $this->getAuthToken(),
                     'Content-Type' => 'application/json',
                 ],
                 'json' => [
@@ -51,7 +59,7 @@ class SMSPoh
         try {
             $response = $this->client->get($this->baseUrl . '/balance', [
                 'headers' => [
-                    'Authorization' => 'Bearer ' . $this->apiKey,
+                    'Authorization' => 'Bearer ' . $this->getAuthToken(),
                 ],
             ]);
 
@@ -66,7 +74,7 @@ class SMSPoh
         try {
             $response = $this->client->post($this->baseUrl . '/verify', [
                 'headers' => [
-                    'Authorization' => 'Bearer ' . $this->apiKey,
+                    'Authorization' => 'Bearer ' . $this->getAuthToken(),
                     'Content-Type' => 'application/json',
                 ],
                 'json' => [
@@ -87,7 +95,7 @@ class SMSPoh
         try {
             $response = $this->client->get($this->baseUrl . '/status/' . $messageId, [
                 'headers' => [
-                    'Authorization' => 'Bearer ' . $this->apiKey,
+                    'Authorization' => 'Bearer ' . $this->getAuthToken(),
                 ],
             ]);
 

@@ -35,7 +35,6 @@ class SMSPoh
 
     public function send($to, $message)
     {
-        $to = str_replace('+', '%2B', $to);
         try {
             $response = $this->client->post($this->baseUrl . '/send', [
                 'headers' => [

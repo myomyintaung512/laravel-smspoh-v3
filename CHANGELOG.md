@@ -2,7 +2,24 @@
 
 All notable changes to `laravel-smspoh-v3` will be documented in this file.
 
-## 1.0.0 - 2024
+## [1.0.1] - 2024-01-20
+
+### Added
+- Enhanced phone number handling for international formats
+- Improved error handling for API responses
+- Added comprehensive input validation for phone numbers
+
+### Fixed
+- Fixed URL encoding for international phone numbers with '+' prefix
+- Resolved authentication token generation issues
+- Improved error message clarity for API exceptions
+
+### Changed
+- Updated documentation with international phone number format examples
+- Optimized API response handling for better performance
+- Enhanced error handling in SMSPohChannel
+
+## [1.0.0] - 2024
 
 ### Added
 
